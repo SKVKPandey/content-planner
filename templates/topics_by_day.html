@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topics for {{ date }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .topic-list {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .topic {
+            margin: 10px 0;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h2>Topics for {{ date }}</h2>
+    <div class="topic-list">
+        {% for topic in topics %}
+        <div class="topic">
+            <strong>{{ topic[0] }}</strong> <br>
+            Platform: {{ topic[1] }} <br>
+            Time: {{ topic[2] }}
+        </div>
+        {% else %}
+        <p>No topics scheduled for this day.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
