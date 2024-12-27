@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/creators.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <!-- Reference your JavaScript file -->
+    <script src="{{ url_for('static', filename='js/firebase.js') }}"></script>
+    <style>
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="align-items: center;">
+        <div class="form-container" id="#loginContainer">
+            <h1 style="color: #fff">Welcome to Likhlo Creators</h1>
+            <button id="verify-button" style="display: flex; flex-direction: row; align-items: center; justify-content: center; background-color: #141414; font-size: 24px;">
+                <img src="static/images/google-icon.png" alt="Google Icon" style="width: 50px; height: 50px; margin-right: 10px;">
+                <a style="color: #fff; text-decoration: none;">Login with Google</a>
+            </button>
+            <div id="error-message" class="error-message"></div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('verify-button').addEventListener('click', function() {
+            
+            // Send the verification code to the Flask backend
+            fetch('/verify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    googleSignIn();
+                } else {
+                    document.getElementById('error-message').innerText = 'Verification failed. Please try again.';
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
