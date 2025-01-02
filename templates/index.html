@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div id="hero" class="hero-section">
+    <div class="hero-content-container">
+        <div style="margin-top: 18px;">
+        <h1><b>Likhlo AI</b></h1>
+        <p><b>Schedule, Generate, Automate, Analyse</b></p>
+        </div>
+        <p id="descr">Likhlo AI transforms your ideas into captivating social media content effortlessly, utilizing generative AI.<br> Stay ahead in the digital landscape with Likhlo AI.</p>
+        <a href="#tools" class="btn btn-danger btn-lg" id="coming" style="background-color: #742772;">Explore</a>
+    </div>
+</div>
+
+<div class="separator">
+    <h1>Applications</h1>
+</div>
+
+<div class="tools-section">
+    <div id="tools" class="tool" onclick="contentPlanner()">
+        <h2>Scheduler</h2>
+        <div class="image-column">
+            <img src="../static/images/index1.jpg" alt="About Us Image">
+        </div>
+        <div class="text-column">
+            <p>Likhlo AI saves you time by generating a content plan that includes topics for your posts. You can easily save these topics, mark them on your Likhlo Calendar, and automate the further content creation and posting process, ensuring a consistent and streamlined content workflow.</p>
+        </div>
+    </div>
+    <div id="tools" class="tool" onclick="calendarView()">
+        <h2>Calendar</h2>
+        <div class="image-column">
+            <img src="../static/images/index2.jpg" alt="About Us Image">
+        </div>
+        <div class="text-column">
+            <p>Likhlo Calendar helps you easily track your post schedule in one place, offering a clear view of upcoming content. With its automation features, you can generate and schedule posts with ease, ensuring your content goes live on time without the need for manual intervention.</p>
+        </div>
+    </div>
+    <div id="tools" class="tool">
+        <h2>Creator Window</h2>
+        <div class="image-column">
+            <img src="../static/images/index3.jpg" alt="About Us Image">
+        </div>
+        <div class="text-column">
+            <p>Creator Window is your go-to tool for editing and creating content. It allows you to refine existing posts and generate new material that fits your planned schedule, ensuring everything stays aligned with your content strategy and remains consistent throughout.</p>
+        </div>
+    </div>
+    <div id="tools" class="tool">
+        <h2>Data Analytics</h2>
+        <div class="image-column">
+            <img src="../static/images/index4.jpg" alt="About Us Image">
+        </div>
+        <div class="text-column">
+            <p>Likhlo AI's Data Analytics section offers insights into content performance by analyzing metrics like engagement, reach, and audience behavior. It helps optimize your strategy with reports and visualizations, enabling you to track trends and adjust content for better audience engagement.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
