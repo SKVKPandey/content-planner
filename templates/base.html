@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likhlo AI</title>
+    <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
+    <script src="https://unpkg.com/pdfjs-dist@2.9.359/build/pdf.js"></script>
+    <!-- Add Font Awesome for the search icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/shepherd.js@7.2.0/dist/css/shepherd.css" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy6gDZO5eRoSH72K9egBbGDDdRbPqD" crossorigin="anonymous">
+
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/content_plan.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/calendar_view.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/firebase.js') }}"></script>
+
+
+    <style>
+        .hero-section {
+            position: relative;
+            background-image: url('../static/images/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 5em;
+            height: 100vh; /* Set height to 100% of the viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .profile-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none; /* Removes underline from the anchor */
+        }        
+    </style>
+
+</head>
+
+<body>
+    <div id="loading-logo">
+        <img src="../static/images/logo.jpg" alt="Likhlo AI" class="logo"> 
+    </div>
+        <nav>
+            <div class="navbar-brand">
+                <img src="../static/images/logo.jpg" alt="Likhlo AI">
+                <b>Likhlo AI</b>
+            </div>
+            <div class="navbar-toggle" id="navbarToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="navbar-links" id="navbarLinks">
+                <a href="/#hero">Home</a>
+                <a href="/#tools">Applications</a>
+                <a id="loginBtn" href="/login" target="_blank">Login&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <!-- <div id="profileImageDiv" class="profile-img">
+                    <img id="profileImage" src="" alt="Profile Image" style="width: 50px; height: 50px; border-radius: 50%;">
+                </div> -->
+                <div id="profileImageDiv" class="profile-img">
+                    <img id="profileImage" src="" alt="Profile Image" style="width: 50px; height: 50px; border-radius: 50%;">
+                    <div class="tooltip" id="logoutTooltip">Logout&nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </div>                
+                <script>
+                    // Retrieve profile image from localStorage
+                    const profileImage = localStorage.getItem('profileImage');
+                    if (profileImage) {
+                        document.getElementById('loginBtn').style.display = "none";
+                        document.getElementById('profileImageDiv').style.display = "flex";
+                        document.getElementById('profileImage').src = profileImage;
+                    } 
+                    else {
+                        document.getElementById('profileImageDiv').style.display = "none";
+                        document.getElementById('loginBtn').style.display = "flex";
+                    }
+                    document.addEventListener('DOMContentLoaded', function () {
+                const profileImage = document.getElementById('profileImage');
+                const tooltip = document.getElementById('logoutTooltip');
+                let isTooltipVisible = false;
+
+                // Toggle tooltip visibility on profile image click
+                profileImage.addEventListener('click', function (event) {
+                    isTooltipVisible = !isTooltipVisible;
+                    tooltip.classList.toggle('visible', isTooltipVisible);
+
+                    // Prevent click from propagating to document
+                    event.stopPropagation();
+                });
+
+                // Redirect to logout on tooltip click
+                tooltip.addEventListener('click', function () {
+                    logout()
+                    localStorage.clear();
+                    window.location.href = '/logout'; // Replace with your logout route
+                });
+
+                // Hide the tooltip when clicking outside
+                document.addEventListener('click', function () {
+                    if (isTooltipVisible) {
+                        tooltip.classList.remove('visible');
+                        isTooltipVisible = false;
+                    }
+                });
+
+                // Prevent click inside tooltip from hiding it
+                tooltip.addEventListener('click', function (event) {
+                    event.stopPropagation();
+                });
+            });
+                </script>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="main-content" style="display: none;">
+            {% block content %}
+            <!-- Dynamic content goes here -->
+            {% endblock %}
+        </main>
+
+        <!-- Footer Section -->
+        <footer>
+            <div style="text-align: center; margin-top: 15px; margin-bottom: 10px;">
+                <p>&copy; 2024 Likhlo AI. All rights reserved. Developed by SKVK Pandey.</p>
+            </div>
+        </footer>   
+</body>
+</html>
