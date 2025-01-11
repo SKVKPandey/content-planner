@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Planner{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}">
+    <div class="submain">
+    <h1>Craft Your Content Plan<br>with Likhlo AI</h1>
+    <form method="post" action="/contentPlanner">
+
+        <!-- Content Type Question -->
+        <div class="question">
+            <label>The Topic For My Posts Is</label><br>
+            <input type="text" name="topic" placeholder="Eg. Organizing New Year Party...">  
+            <div class="collapsible-section">
+                <button type="button" style="background: none;" class="collapsible-btn">Add Description (Optional)</button>
+                <div class="description-content" style="display: none; margin-top: 10px;">
+                    <textarea name="description" class="styled-textarea" placeholder="Add an optional description here..." rows="4" cols="50"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Goal Question -->
+        <div class="question">
+            <label>My Goal Is</label><br>
+            <input type="checkbox" name="goal" value="Increase Engagement" required> Increase Engagement<br>
+            <input type="checkbox" name="goal" value="Boost Followers"> Boost Followers<br>
+            <input type="checkbox" name="goal" value="Promote Product"> Promote Product<br>
+            <input type="radio" name="goal" class="others-option"> Others<br>
+            <input type="text" name="goal_others" class="others-input" placeholder="Please specify...">
+        </div>
+
+        <!-- Audience Question -->
+        <div class="question">
+            <label>My Audience Are</label><br>
+            <input type="checkbox" name="audience" value="Youth" required> Youth<br>
+            <input type="checkbox" name="audience" value="Professionals"> Professionals<br>
+            <input type="checkbox" name="audience" value="General Public"> General Public<br>
+            <input type="radio" name="audience" class="others-option"> Others<br>
+            <input type="text" name="audience_others" class="others-input" placeholder="Please specify...">
+        </div>
+
+        <!-- Platforms Question -->
+        <div class="question">
+            <label>I Want To Post On These Platforms</label><br>
+            <input type="checkbox" name="platforms" value="Instagram"> Instagram<br>
+            <input type="checkbox" name="platforms" value="Facebook"> Facebook<br>
+            <input type="checkbox" name="platforms" value="Twitter(X)"> Twitter (X)<br>
+            <input type="checkbox" name="platforms" value="Reddit"> Reddit<br>
+            <input type="checkbox" name="platforms" value="WhatsApp"> WhatsApp<br>
+        </div>
+
+        <!-- Frequency Question -->
+        <div class="question">
+            <label>The Frequency Of My Post (Per Week) Is</label><br>
+            <input type="number" name="frequency" min="1" required><br>
+        </div>
+
+        <!-- Date Range Question -->
+        <div class="question">
+            <label for="start_date">Starting Date</label>
+            <input type="date" id="start_date" name="start_date" required><br><br>
+            <label for="end_date">End Date</label>
+            <input type="date" id="end_date" name="end_date" required><br><br>
+        </div>
+
+        <div class="question">
+            <label>Generate Description For</label><br>
+            <input type="checkbox" name="suggestion" value="Image"> Image<br>
+            <input type="checkbox" name="suggestion" value="Caption"> Caption<br>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="button-container">
+            <button type="button" id="backBtn">Back</button>
+            <button type="button" id="nextBtn">Next</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
