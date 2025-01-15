@@ -1,0 +1,88 @@
+    {% extends "base.html" %}
+
+    {% block title %}Content{% endblock %}
+
+    {% block content %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/content_plan.css') }}">
+    <div id="nav-panel" class="nav-panel" style="display: none;">
+        <span id="close-nav-panel" class="close-nav-panel">X</span>
+        <h2>Event Details</h2>
+        <div id="event-details"></div>
+    </div>
+    <div class="submain">
+    <div class="container">
+        <a href="/"><i class="fas fa-arrow-left"></i> Go Back</a>
+        <h1>Your Social Media Content Plan</h1>
+        <div class="tableDiv">
+        <table id="contentTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Platform</th>
+                    <th>Post Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in content_plan %}
+                <tr id="{{ post.uniquePostID }}">
+                    <td>
+                        <span data-date="{{ post.Date }}">{{ post.Date }}</span>
+                    </td>
+                    <td>
+                        <span data-time="{{ post.Time }}">{{ post.Time }}</span>
+                    </td>
+                    <td>
+                        <span contenteditable="true" data-platform="{{ post.Platform }}">{{ post.Platform }}</span>
+                    </td>
+                    <td>
+                        <span contenteditable="true" data-title="{{ post['Post Title'] }}">{{ post['Post Title'] }}</span>
+                    </td>
+                    <td>
+                        <span class="action-btn" 
+                            onclick="openNav(this)" 
+                            data-postTitle="{{ post['Post Title'] }}" 
+                            data-postPlatform="{{ post.Platform }}" 
+                            data-postDate="{{ post.Date }}" 
+                            data-postTime="{{ post.Time }}" 
+                            data-imgDesc="{{ post['imgDesc'] }}" 
+                            data-capDesc="{{ post['capDesc'] }}">
+                            <i class="fas fa-edit"></i>
+                        </span>
+                        <span class="action-btn" onclick="deleteRow(this)">
+                            <i class="fas fa-trash-alt"></i>
+                        </span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        <div class="table-buttons">
+            <!-- New Save and Show Calendar buttons -->
+            <div class="action-buttons">
+                <button onclick="saveContentPlan()">Save</button>
+                <button style="margin-left: 10px;" onclick="showCalendar()">Show Calendar</button>
+            </div>
+            <button onclick="addRow()">Add Row</button>
+        </div>
+    </div>
+
+    <!-- Date Popup -->
+    <div class="popup" id="datePopup">
+        <label for="datePicker">Select Date:</label>
+        <input type="date" id="datePicker" min="" max="">
+        <button onclick="confirmDate()">Confirm</button>
+    </div>
+    <!-- Time Popup -->
+    <div class="popup" id="timePopup">
+        <label for="timePicker">Select Time:</label>
+        <input type="time" id="timePicker">
+        <button onclick="confirmTime()">Confirm</button>
+    </div>
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+
+    </div>
+    {% endblock %}
