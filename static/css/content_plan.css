@@ -1,0 +1,238 @@
+.submain {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.submain:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%);
+    animation: shiningGlass 2s linear infinite;
+    z-index: 1;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 3;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.8em;
+    color: #333;
+}
+
+.tableDiv {
+    max-height: 700px;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 12px;
+    text-align: left;
+    color: #555;
+}
+th {
+    background-color: #000;
+    color: #fff;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.action-btn {
+    cursor: pointer;
+    color: #000;
+}
+.action-btn:hover {
+    color: #0056b3;
+}
+.add-row-btn {
+    display: block;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #D4AF37;
+    color: white;
+    text-align: center;
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.add-row-btn:hover {
+    background-color: #218838;
+}
+/* Popup styling */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1000;
+    border-radius: 8px;
+}
+.popup input {
+    padding: 8px;
+    width: 100%;
+    margin-top: 8px;
+}
+.popup button {
+    margin-top: 12px;
+    background-color: #000;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.popup button:hover {
+    background-color: #0056b3;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+}
+
+.table-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 500px;
+    height: 100%;
+    background-color: #f9f9f9;
+    color: #000;
+    border-left: 1px solid #ccc;
+    overflow-y: auto;
+    box-shadow: -2px 0 5px rgba(128, 128, 128, 0.7);
+    padding: 15px;
+    z-index: 1250;
+}
+.nav-panel p {
+    color: #000;
+}
+.nav-panel textarea {
+    color: #000;
+    font-size: 18px;
+    width: 100%; /* Ensures textarea spans the full width of the nav panel */
+    box-sizing: border-box; /* Includes padding and border in the width calculation */
+    margin: 8px 0; /* Adds spacing between textareas */
+}
+.nav-panel-prompt {
+    width: 100%;
+    color: #000;
+    background-color: #fff;
+}
+.nav-panel-prompt-div {
+    display: flex;
+    flex-direction: row;
+}
+#promptBtn {
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text color */
+    padding: 8px 12px; /* Adds padding to make it look like a button */
+    border: none; /* Removes any default borders */
+    text-align: center; /* Centers the text */
+    display: inline-block; /* Ensures it behaves like a button */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+#promptBtn:hover {
+    background-color: #333; /* Darker gray on hover */
+}
+.nav-update-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+}
+.nav-update-btn:hover {
+    background-color: #333;
+}
+.styled-input {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+.close-nav-panel {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    float: right;
+}
+.desc-col {
+    display: flex;
+    flex-direction: column;
+    height: 900px;
+    justify-content: space-between;
+    align-items: right;
+    margin-top: 50px;
+}
+.desc-buttons-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
